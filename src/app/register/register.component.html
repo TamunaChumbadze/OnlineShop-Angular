@@ -1,0 +1,89 @@
+<form [formGroup]="formInfo" (ngSubmit)="register()">
+  <div class="form-container">
+    <div class="form-left">
+      <div class="field">
+        <label for="firstName">
+          <i class="fas fa-user"></i> First Name
+        </label>
+        <input type="text" formControlName="firstName" id="firstName"/>
+      </div>
+      <div class="field">
+        <label for="lastName">
+          <i class="fas fa-user"></i> Last Name
+        </label>
+        <input type="text" formControlName="lastName" id="lastName"/>
+      </div>
+      <div class="field">
+        <label for="email">
+          <i class="fas fa-envelope"></i> Email
+        </label>
+        <input type="email" formControlName="email" id="email"/>
+      </div>
+      <div class="field">
+        <label for="password">
+          <i class="fas fa-lock"></i> Password
+        </label>
+        <input type="password" formControlName="password" id="password"/>
+      </div>
+      <div class="field">
+        <label for="avatar">
+          <i class="fas fa-image"></i> Avatar
+        </label>
+        <input type="text" formControlName="avatar" id="avatar"/>
+      </div>
+    </div>
+
+    <div class="form-right">
+      <div class="field">
+        <label for="age">
+          <i class="fas fa-calendar-alt"></i> Age
+        </label>
+        <input type="text" formControlName="age" id="age"/>
+      </div>
+      <div class="field">
+        <label for="address">
+          <i class="fas fa-map-marker-alt"></i> Address
+        </label>
+        <input type="text" formControlName="address" id="address"/>
+      </div>
+      <div class="field">
+        <label for="phone">
+          <i class="fas fa-phone"></i> Phone
+        </label>
+        <input type="text" formControlName="phone" id="phone"/>
+      </div>
+      <div class="field">
+        <label for="zipcode">
+          <i class="fas fa-map-pin"></i> Zipcode
+        </label>
+        <input type="text" formControlName="zipcode" id="zipcode"/>
+      </div>
+
+      <!-- Gender field added to form -->
+      <div class="field">
+        <label for="gender">
+          <i class="fas fa-venus-mars"></i> Gender
+        </label>
+        <div class="custom-dropdown">
+          <button class="dropdown-btn" (click)="toggleDropdown()" [class.selected]="selectedGender">
+            <i class="fas fa-venus-mars"></i> {{ selectedGender || 'Select Gender' }}
+          </button>
+
+          <div class="dropdown-content" [ngClass]="{'show': isDropdownOpen}">
+            <div class="dropdown-item" (click)="selectGender('MALE')">
+              <i class="fas fa-mars"></i> Male
+            </div>
+            <div class="dropdown-item" (click)="selectGender('FEMALE')">
+              <i class="fas fa-venus"></i> Female
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Register button -->
+  <button [disabled]="formInfo.invalid" type="submit">
+    <i class="fas fa-user-plus"></i> Register
+  </button>
+</form>

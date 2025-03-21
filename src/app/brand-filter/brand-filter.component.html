@@ -1,0 +1,12 @@
+<div class="brand-list">
+    
+    @for (item of brands; track $index) {
+      <button (click)="onBrandClick(item)" [class.active]="selectedBrand === item">
+        {{ item }}
+      </button>
+    }
+  </div>
+  
+  
+  
+ 

@@ -1,0 +1,22 @@
+<div class="login-backdrop" (click)="closeCard()">
+  <div class="login-card" (click)="$event.stopPropagation()">
+    <button class="close-btn" (click)="closeCard()">X</button>
+    <form [formGroup]="formInfo" (ngSubmit)="login()">
+        <div class="input-area">
+            <label>Email</label>
+            <div class="input-container">
+                <i class="fas fa-envelope"></i>
+                <input type="email" formControlName="email" placeholder="Enter your email">
+            </div>
+        </div>
+        <div class="input-area">
+            <label>Password</label>
+            <div class="input-container">
+                <i class="fas fa-lock"></i>
+                <input type="password" formControlName="password" placeholder="Enter your password">
+            </div>
+        </div>
+        <button type="submit" class="login-btn">LOGIN</button>
+    </form>
+  </div>
+</div>
