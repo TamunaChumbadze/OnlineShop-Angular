@@ -1,0 +1,35 @@
+<div class="shop-now-container">
+    <button class="shop-now-btn">Shop Now</button>
+  </div>
+  
+  <div class="pages">
+    @for (item of pageList; track $index) {
+      <button (click)="goToPage(item)" 
+      [class.active]="item === currentPage">
+      {{item}}
+    </button>
+    }
+  </div>
+  
+  <div class="shop-all-products-container">
+    <div class="brand-sidebar">
+      <app-brand-filter (brandSelected)="onBrandSelected($event)"></app-brand-filter>
+    </div>
+  
+    <section class="product-container">
+      @for (item of filteredProductList; track $index) {
+        <div class="card">
+          <img [src]="!item.images[0] ? noImages : item.images[0]" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{item.title}}</h5>
+            <h5 class="card-title mb-2 text-muted">{{item.brand}}</h5>
+            <b class="card-stock">მარაგშია: {{item.stock}}</b>
+            <p class="card-text">{{item.description}}</p>
+            <p class="card-text"><strong>Rating:</strong> {{item.rating}}</p>
+            <button (click)="addToCart(item)" [disabled]="item.stock == 0" class="btn btn-primary">Add To cart</button>
+          </div>
+        </div>
+      }
+    </section>
+  </div>
+  
