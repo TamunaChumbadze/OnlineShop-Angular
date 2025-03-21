@@ -83,7 +83,7 @@
 }
 
 .line-text:hover {
-  color: white;
+  color: rgb(59, 61, 226);
 }
 
 .line-text:hover::before {
@@ -123,6 +123,7 @@
 }
 
 .card {
+  font-family: 'Lobster', cursive;
   display: flex;
   flex-direction: column;
   width: 300px;
