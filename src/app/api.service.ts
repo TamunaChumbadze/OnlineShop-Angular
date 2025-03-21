@@ -46,4 +46,8 @@ export class ApiService {
   updateProduct(body:any) {
     return this.http.patch("https://api.everrest.educata.dev/shop/cart/product", body)
   }
+
+  getRatedProducts() {
+    return this.http.get<any>('https://api.everrest.educata.dev/shop/products/rate');
+  }
 }
