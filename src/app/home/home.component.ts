@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
 
 
 
-  ///აქ გამოვიტანე მხოლოდ ხელმისაწვდომი პროდუქტები
+  
   getRatedProducts(): void {
     this.apiService.getAllproduct().subscribe({
       next: (data: any) => {
@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
         if (data && data.products) { 
           let availableProducts = data.products.filter((item: any) => item.stock > 0); 
           let shuffledProducts = availableProducts.sort(() => 0.5 - Math.random()); 
-          this.ratedProducts = shuffledProducts.slice(0, 10); 
+          this.ratedProducts = shuffledProducts.slice(0, 8); 
           console.log('Random 10 available products:', this.ratedProducts);
         }
       },
