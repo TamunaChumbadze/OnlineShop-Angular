@@ -1,34 +1,41 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
 import { Products } from '../products'; 
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
+  imports: [FormsModule]
 })
 export class CartComponent implements OnInit {
-  cartItems: Products[] = [];  
+  cartItems: Products[] = [];
 
   constructor(private cartService: CartService) {}
 
   ngOnInit() {
     this.cartService.cart$.subscribe(cartItems => {
-      this.cartItems = cartItems.products; 
+      this.cartItems = cartItems.products;
     });
 
     this.cartService.getCartItems();
   }
 
   removeItem(productId: string) {
-    this.cartService.removeFromCart(productId);
+    const confirmation = confirm('Are you sure you want to remove this item?');
+    if (confirmation) {
+      this.cartService.removeFromCart(productId);
+    }
   }
-
+  
   updateQuantity(product: Products, quantity: number) {
     if (quantity >= 1) {
+      
       this.cartService.updateProductQuantity({ id: product._id, quantity: quantity });
     }
   }
+  
 
   clearCart() {
     if (confirm('Are you sure you want to clear the cart?')) {

@@ -16,10 +16,16 @@
       @for(item of cartItems; track $index) {
       <tr>
         <td>
-  <span class="product-id-symbol scooter-animation" title="Product ID: {{ item.productId }}">🛵</span>
-</td>
+          <span class="product-id-symbol scooter-animation" title="Product ID: {{ item.productId }}">🛵</span>
+        </td>
         <td>${{ item.pricePerQuantity }}</td>
-        <td>{{ item.quantity }}</td>
+        <td>
+          <div class="quantity-control">
+            <button class="btn btn-outline-secondary btn-sm" (click)="updateQuantity(item, item.quantity - 1)">-</button>
+            <span class="quantity-number">{{ item.quantity }}</span>
+            <button class="btn btn-outline-secondary btn-sm" (click)="updateQuantity(item, item.quantity + 1)">+</button>
+          </div>
+        </td>
         <td>${{ item.pricePerQuantity * item.quantity }}</td>
         <td>
           <button

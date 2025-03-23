@@ -7,14 +7,13 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root'
 })
 export class CartService {
-
   private cartSubject = new BehaviorSubject<any>({ products: [], total: { price: { current: 0, beforeDiscount: 0 }, quantity: 0, products: 0 } });
   cart$ = this.cartSubject.asObservable();
 
   constructor(private http: HttpClient, private cookies: CookieService) { }
 
-  postProduct(body:any) {
-    return this.http.post("https://api.everrest.educata.dev/shop/cart/product", body)
+  postProduct(body: any) {
+    return this.http.post("https://api.everrest.educata.dev/shop/cart/product", body);
   }
 
   getCartItems() {
@@ -23,41 +22,68 @@ export class CartService {
         this.cartSubject.next(cart);  
       });
   }
-  
-  
+
   addToCart(product: { id: string, quantity: number }) {
     if (this.cookies.get('user')) {
       return this.http.post('https://api.everrest.educata.dev/shop/cart/product', product)
-        .subscribe(() => this.getCartItems());  
+        .subscribe(() => {
+          this.getCartItems();  
+        });
     } else {
       alert('You are not authorized!');
-      return;  
+      return;
     }
   }
   
 
-  
   updateProductQuantity(product: { id: string, quantity: number }) {
-    return this.http.patch('https://api.everrest.educata.dev/shop/cart/product', product)
-      .subscribe(() => this.getCartItems()); 
+    return this.http.patch('https://api.everrest.educata.dev/shop/cart/product', product).subscribe(
+      (response) => { 
+        this.getCartItems(); 
+      },
+      (error) => {
+        console.error('Error updating product quantity', error);
+        return throwError(error); 
+      }
+    );
   }
+  
 
   removeFromCart(productId: string) {
-    return this.http.delete(`https://api.everrest.educata.dev/shop/cart/product?id=${productId}`)
-      .subscribe(() => this.getCartItems());  
+    const body = { id: productId }; 
+    return this.http.delete(`https://api.everrest.educata.dev/shop/cart/product`, { body: body })
+      .subscribe(
+        () => {
+          this.getCartItems(); 
+          alert('Product removed from cart');
+        },
+        (error) => {
+          console.error('Error removing product from cart', error);
+          alert('Failed to remove product from cart');
+        }
+      );
   }
+  
 
 
   clearCart() {
-    return this.http.delete('https://api.everrest.educata.dev/shop/cart')
-      .subscribe(() => this.cartSubject.next([]));  
+    return this.http.delete('https://api.everrest.educata.dev/shop/cart').subscribe(
+      () => this.cartSubject.next({ products: [], total: { price: { current: 0, beforeDiscount: 0 }, quantity: 0, products: 0 } }),
+      (error) => console.error('Error clearing cart', error)
+    );
   }
-  
+
   checkout() {
-    return this.http.post('https://api.everrest.educata.dev/shop/cart/checkout', {})
-      .subscribe(() => {
+    return this.http.post('https://api.everrest.educata.dev/shop/cart/checkout', {}).subscribe(
+      () => {
         alert('Checkout successful!');
-        this.clearCart();  
-      });
+        this.clearCart();
+      },
+      (error) => console.error('Checkout failed', error)
+    );
   }
 }
+function throwError(error: any): void {
+  throw new Error('Function not implemented.');
+}
+

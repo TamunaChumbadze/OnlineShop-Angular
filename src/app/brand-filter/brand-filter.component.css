@@ -1,7 +1,8 @@
 .brand-list {
   display: flex;
-  flex-direction: column; /* ვერტიკალური განლაგება */
+  flex-direction: column; 
   gap: 10px;
+
 }
 
 .brand-list button {
@@ -17,6 +18,8 @@
   transition: background-color 0.3s ease;
   text-align: left;
   font-size: 16px;
+  
+  
 }
 
 .brand-list button.active {
@@ -30,11 +33,9 @@
 .brand-logo {
   font-family: 'Courier', monospace;
   font-size: 28px;
-  color: #00FF00;
-
+  color: #0c8b0c;
   position: relative;
   text-transform: uppercase;
-  
 }
 
 .brand-logo::after {
