@@ -3,7 +3,7 @@
   <div class="shop-sidebar">
     <app-brand-filter (brandSelected)="onBrandSelected($event)"></app-brand-filter>
   </div>
-
+ 
   <div class="content-container">
     <div class="category-container">
       <div class="category-sidebar">
@@ -25,7 +25,7 @@
         }
       </div>
     </div>
-
+ 
     <section class="product-container">
       @for (item of filteredProductList; track $index) {
         <div class="card">
@@ -34,7 +34,7 @@
             <h5 class="card-title">{{item.title}}</h5>
             <h5 class="card-title mb-2 text-muted">{{item.brand}}</h5>
             <b class="card-stock">მარაგშია: {{item.stock}}</b>
-            
+           
             <div class="product-price">
               @if (item.price.discountPercentage > 0) {
                 <div class="discount-badge">
@@ -65,6 +65,6 @@
       }
     </section>
   </div>
-
-
+ 
+ 
 </div>
