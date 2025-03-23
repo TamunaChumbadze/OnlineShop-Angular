@@ -7,11 +7,11 @@ import { BehaviorSubject, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
+  [x: string]: any;
 
   constructor(public http: HttpClient) { }
 
-  public gadamzidi : Subject<any> = new Subject()
-  public sxvaGadamzidi: BehaviorSubject<number> = new BehaviorSubject(0)
+ 
 
   signUp(body: any) {
     return this.http.post("https://api.everrest.educata.dev/auth/sign_up", body)
@@ -30,11 +30,13 @@ export class ApiService {
   getProductsByBrand(brand: string, page: number = 1) {
     return this.http.get(`https://api.everrest.educata.dev/shop/products/brand/${brand}?page_index=${page}&page_size=12`);
   }
+
   getAllproduct(page: number = 1) {
     return this.http.get<AllProducts>(
       `https://api.everrest.educata.dev/shop/products/all?page_index=${page}&page_size=12`
     );
   }
+  
   getBrands() {
     return this.http.get<string[]>('https://api.everrest.educata.dev/shop/products/brands');
   }
@@ -50,4 +52,22 @@ export class ApiService {
   getRatedProducts() {
     return this.http.get<any>('https://api.everrest.educata.dev/shop/products/rate');
   }
+
+  getProductById(id: string) {
+    return this.http.get(`https://api.everrest.educata.dev/shop/products/id/${id}`);
+  }
+
+  getCategories() {
+    return this.http.get<any[]>('https://api.everrest.educata.dev/shop/products/categories');
+  }
+  
+  getProductsByCategory(categoryId: string, page: number = 1, pageSize: number = 12) {
+    return this.http.get<any>(
+      `https://api.everrest.educata.dev/shop/products/category/${categoryId}?page_index=${page}&page_size=${pageSize}`
+    );
+  }
+  
+
+ 
+  
 }

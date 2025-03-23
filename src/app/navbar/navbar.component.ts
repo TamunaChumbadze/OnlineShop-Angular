@@ -3,6 +3,7 @@ import { SigninComponent } from "../signin/signin.component";
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ScrollingNavDirective } from '../scrolling-nav.directive';
+import { CartService } from '../cart.service'; 
 
 @Component({
   selector: 'app-navbar',
@@ -12,8 +13,14 @@ import { ScrollingNavDirective } from '../scrolling-nav.directive';
 })
 export class NavbarComponent {
   loginCardVisible = signal(false);
-  
-  constructor(private router: Router) {}
+  cartItemCount = signal(0); 
+
+  constructor(private router: Router, private cartService: CartService) {
+    // Use cart$ observable to track cart changes
+    this.cartService.cart$.subscribe((items: any[]) => {
+      this.cartItemCount.set(items.length);  // Update cart item count
+    });
+  }
 
   showLoginCard() {
     this.loginCardVisible.set(true);

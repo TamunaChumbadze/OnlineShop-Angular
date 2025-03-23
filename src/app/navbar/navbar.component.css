@@ -51,7 +51,7 @@
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Logo styling */
+
 .navbar-brand {
   font-size: 35px;
   font-family: "Chakra Petch", sans-serif;
@@ -76,8 +76,7 @@
   justify-content: center; 
   align-items: center; 
   position: relative;
-  left: 50%;
-  transform: translate(-55%);
+  left: 20%;
 }
 
 .navbar-search input {

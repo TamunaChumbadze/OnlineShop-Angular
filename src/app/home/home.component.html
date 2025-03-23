@@ -24,12 +24,11 @@
             <h5 class="card-title">{{ item.title }}</h5>
             <b class="card-stock">Stock: {{ item.stock }}</b>
             <p class="card-text"><strong>Rating:</strong> {{ item.rating }} <i class="fas fa-star"></i></p>
-            <button class="btn btn-primary" [disabled]="item.stock == 0" (click)="addToCart(item)">See Details</button>
+            <button class="btn btn-primary" [disabled]="item.stock == 0" (click)="goToDetails(item)">See Details</button>
           </div>
         </div>
       }
     </div>
   } @else {
-    <p>No products available.</p>
   }
 </section>

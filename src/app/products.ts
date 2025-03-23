@@ -1,4 +1,7 @@
 export interface Products {
+productId: any;
+pricePerQuantity: any;
+quantity: any;
     price: {
         current: number;
         currency: string;

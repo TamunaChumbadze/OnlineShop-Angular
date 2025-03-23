@@ -3,6 +3,7 @@ import { ApiService } from '../api.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-profile-page',
   imports: [],

@@ -9,7 +9,7 @@
   height: 700px;
   background-image: url("../../assets/images/Shop.png");
   background-size: cover;
-  background-position: center center;
+  background-position: center;
   background-attachment: fixed;
   position: relative;
   overflow: hidden;

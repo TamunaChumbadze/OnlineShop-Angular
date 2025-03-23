@@ -1,12 +1,9 @@
 <div class="brand-list">
-    
-    @for (item of brands; track $index) {
-      <button (click)="onBrandClick(item)" [class.active]="selectedBrand === item">
+  @for (item of brands; track $index) {
+    <button (click)="onBrandClick(item)" [class.active]="selectedBrand === item">
+      <span class="brand-logo">
         {{ item }}
-      </button>
-    }
-  </div>
-  
-  
-  
- 
+      </span>
+    </button>
+  }
+</div>
