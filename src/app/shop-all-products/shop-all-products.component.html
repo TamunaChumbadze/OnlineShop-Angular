@@ -1,21 +1,31 @@
-<div class="shop-now-container">
-    <button class="shop-now-btn">Shop Now</button>
+<div class="shop-cover"></div>
+<div class="shop-container">
+  <div class="shop-sidebar">
+    <app-brand-filter (brandSelected)="onBrandSelected($event)"></app-brand-filter>
   </div>
-  
-  <div class="pages">
-    @for (item of pageList; track $index) {
-      <button (click)="goToPage(item)" 
-      [class.active]="item === currentPage">
-      {{item}}
-    </button>
-    }
-  </div>
-  
-  <div class="shop-all-products-container">
-    <div class="brand-sidebar">
-      <app-brand-filter (brandSelected)="onBrandSelected($event)"></app-brand-filter>
+ 
+  <div class="content-container">
+    <div class="category-container">
+      <div class="category-sidebar">
+        <h3>Categories</h3>
+        <ul>
+          @for (item of categories; track $index) {
+            <li (click)="onCategorySelected(item.id)">
+              <img [src]="item.image" alt="{{ item.name }}" width="30">
+              {{ item.name }}
+            </li>
+          }
+        </ul>
+      </div>
+      <div class="pages">
+        @for (item of pageList; track $index) {
+          <button (click)="goToPage(item)" [class.active]="item === currentPage">
+            {{item}}
+          </button>
+        }
+      </div>
     </div>
-  
+ 
     <section class="product-container">
       @for (item of filteredProductList; track $index) {
         <div class="card">
@@ -24,12 +34,37 @@
             <h5 class="card-title">{{item.title}}</h5>
             <h5 class="card-title mb-2 text-muted">{{item.brand}}</h5>
             <b class="card-stock">მარაგშია: {{item.stock}}</b>
-            <p class="card-text">{{item.description}}</p>
-            <p class="card-text"><strong>Rating:</strong> {{item.rating}}</p>
-            <button (click)="addToCart(item)" [disabled]="item.stock == 0" class="btn btn-primary">Add To cart</button>
+           
+            <div class="product-price">
+              @if (item.price.discountPercentage > 0) {
+                <div class="discount-badge">
+                  -{{item.price.discountPercentage}}%
+                </div>
+                <p class="price">
+                  <span class="before-discount">
+                    ${{item.price.beforeDiscount}}
+                  </span>
+                  <span class="current-price">
+                    ${{item.price.current}}
+                  </span>
+                </p>
+              } @else {
+                <p class="price">
+                  <span class="current-price">
+                    ${{item.price.current}}
+                  </span>
+                </p>
+              }
+            </div>
+            <p class="rating"><strong>Rating:</strong> {{item.rating}}🌟🌟🌟🌟⭐️</p>
+            <button (click)="addToCart(item)" [disabled]="item.stock == 0" class="btn btn-primary">
+              Add To Cart
+            </button>
           </div>
         </div>
       }
     </section>
   </div>
-  
+ 
+ 
+</div>
