@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ApiService } from '../api.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule,],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
@@ -27,7 +28,7 @@ export class RegisterComponent {
   public isDropdownOpen = false;
   public selectedGender: string = '';
 
-  constructor(public service: ApiService) { }
+  constructor(public service: ApiService, private router: Router) { }
 
  
 
@@ -42,14 +43,22 @@ export class RegisterComponent {
   }
 
   register() {
-    this.service.signUp(this.formInfo.value).subscribe( {
-      next: (data:any) => {
+    this.service.signUp(this.formInfo.value).subscribe({
+      next: (data: any) => {
         console.log(data);
+  
         
+        alert("თქვენ წარმატებით გაიარეთ რეგისტრაცია!");
+  
+       
+        if (confirm("Login or Shoping? Press OK for Login, Cancel for See Shop")) {
+          this.router.navigate(['/login']); 
+        } else {
+          this.router.navigate(['/shop-all-products']);
+        }
       },
       error: (err: any) => console.log(err),
-      
-    } )
-    
+    });
   }
+  
 }

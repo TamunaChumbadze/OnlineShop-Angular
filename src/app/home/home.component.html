@@ -1,34 +1,51 @@
 <div class="slide">
   <div class="shop-now-container">
-    <button class="shop-now-btn" [routerLink]="'/shop-all-products'">Shop Now</button>
+    <button class="shop-now-btn" [routerLink]="'/shop-all-products'">
+      Shop Now
+    </button>
   </div>
-  
+
   <div class="line-container">
     <span class="line-text">
       Our Rated Products
       <div class="stars">
-        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        <i class="fas fa-star"></i><i class="fas fa-star"></i
+        ><i class="fas fa-star"></i><i class="fas fa-star"></i
+        ><i class="fas fa-star"></i>
       </div>
-      
     </span>
   </div>
 </div>
 
 <section class="product-section">
   @if (ratedProducts.length > 0) {
-    <div class="product-container">
-      @for (item of ratedProducts; track $index) {
-        <div class="card">
-          <img [src]="item.images[0] || noImages" class="card-img-top" alt="Product Image">
-          <div class="card-body">
-            <h5 class="card-title">{{ item.title }}</h5>
-            <b class="card-stock">Stock: {{ item.stock }}</b>
-            <p class="card-text"><strong>Rating:</strong> {{ item.rating }} <i class="fas fa-star"></i></p>
-            <button class="btn btn-primary" [disabled]="item.stock == 0" (click)="goToDetails(item)">See Details</button>
-          </div>
-        </div>
-      }
+  <div class="product-container">
+    @for (item of ratedProducts; track $index) {
+    <div class="card">
+      <img
+        [src]="item.images[0] || noImages"
+        class="card-img-top"
+        alt="Product Image"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ item.title }}</h5>
+        <b class="card-stock">Stock: {{ item.stock }}</b>
+        <p class="card-text">
+          <strong>Rating:</strong> {{ item.rating }} <i class="fas fa-star"></i>
+        </p>
+        <button
+          class="btn btn-primary"
+          [disabled]="item.stock == 0"
+          (click)="goToDetails(item)"
+        >
+          See Details
+        </button>
+      </div>
     </div>
-  } @else {
-  }
+    }
+  </div>
+  } @else { }
 </section>
+
+
+

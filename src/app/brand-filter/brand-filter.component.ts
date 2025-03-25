@@ -4,12 +4,12 @@ import { ApiService } from '../api.service';
 @Component({
   selector: 'app-brand-filter',
   templateUrl: './brand-filter.component.html',
-  styleUrls: ['./brand-filter.component.css']
+  styleUrls: ['./brand-filter.component.css'],
 })
 export class BrandFilterComponent implements OnInit {
-  @Output() brandSelected = new EventEmitter<string>();  
+  @Output() brandSelected = new EventEmitter<string>();
   public brands: string[] = [];
-  selectedBrand: string = 'all';  
+  selectedBrand: string = 'all';
 
   constructor(private service: ApiService) {}
 
@@ -19,13 +19,12 @@ export class BrandFilterComponent implements OnInit {
 
   fetchBrands() {
     this.service.getBrands().subscribe((data: string[]) => {
-      this.brands = ['all', ...data];  
+      this.brands = ['all', ...data];
     });
   }
 
-
   onBrandClick(brand: string) {
-    this.selectedBrand = brand; 
-    this.brandSelected.emit(brand);  
+    this.selectedBrand = brand;
+    this.brandSelected.emit(brand);
   }
 }

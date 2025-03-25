@@ -4,6 +4,7 @@ import { Products } from '../products';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { BrandFilterComponent } from "../brand-filter/brand-filter.component";
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-shop-all-products',
@@ -20,9 +21,9 @@ export class ShopAllProductsComponent {
   public currentBrand: string = '';
   public categories: any[] = [];
   assets: any;
-  video: any;
 
-  constructor(private service: ApiService, private router: Router, private cookies: CookieService) {
+
+  constructor(private service: ApiService, private router: Router, private cookies: CookieService, private cartService: CartService) {
     this.showAllProducts();
     this.loadCategories();
   }
@@ -115,5 +116,8 @@ export class ShopAllProductsComponent {
 
   viewDetails(item: any) {
     console.log("Viewing details for", item);
+    
+    this.router.navigate(['/product-details', item._id]);
   }
+  
 }

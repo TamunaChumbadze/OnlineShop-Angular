@@ -2,37 +2,41 @@
   display: flex;
   flex-direction: column; 
   gap: 10px;
-
 }
 
 .brand-list button {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 10px;
-  background-color: #f39c12;
+  padding: 12px 20px; 
+  background-color: #90b8e2;
   color: white;
-  border: none;
+  border: 2px solid #007bff; 
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;  
   text-align: left;
-  font-size: 16px;
-  
-  
+  font-size: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
 }
+
 
 .brand-list button.active {
   background-color: #007bff;
+  border-color: #0056b3;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);  
 }
+
 
 .brand-list button:hover {
   background-color: #0056b3;
+  transform: translateY(2px);  
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15); 
 }
 
 .brand-logo {
   font-family: 'Courier', monospace;
-  font-size: 28px;
+  font-size: 20px;
   color: #0c8b0c;
   position: relative;
   text-transform: uppercase;
@@ -53,4 +57,19 @@
   0% { transform: translateX(0); }
   50% { transform: translateX(10px); }
   100% { transform: translateX(0); }
+}
+
+@media (max-width: 768px) {
+  .brand-list button{
+    background-color: #007bff;
+  }
+  
+  .brand-list button.active {
+    background-color: #f39c12;
+  }
+
+  .brand-logo {
+    color: #e9c68d;
+    font-size: 20px;
+  }
 }

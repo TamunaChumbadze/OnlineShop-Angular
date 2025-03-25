@@ -1,31 +1,37 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../api.service';
 import { CookieService } from 'ngx-cookie-service';
-import { Router } from '@angular/router';
-
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-profile-page',
-  imports: [],
   templateUrl: './profile-page.component.html',
-  styleUrl: './profile-page.component.css'
+  styleUrls: ['./profile-page.component.css'],
+  imports: [RouterModule]
 })
 export class ProfilePageComponent {
-  constructor(public api: ApiService, public cookie: CookieService, public router: Router) {
-    this.getUserData()
-  }
+  public userData: any = null;
+  public defaultAvatar: string = 'https://www.w3schools.com/howto/img_avatar.png'; 
 
+  constructor(public api: ApiService, public cookies: CookieService, public router: Router) {
+    this.getUserData();
+  }
 
   getUserData() {
-    this.api.getUser().subscribe((data:any) => {
-      console.log(data);
-      
-    })
+    this.api.getUser().subscribe({
+      next: (data: any) => {
+        this.userData = data;
+      },
+      error: (err: any) => {
+        console.error('Error fetching user data', err);
+        alert('დაფიქსირდა შეცდომა. გთხოვთ, ხელახლა გაიარეთ ავტორიზაცია.');
+        this.router.navigate(['/signin']);
+      }
+    });
   }
 
-
   signOut() {
-    this.cookie.delete("user")
-    this.router.navigate(["/"])
+    this.cookies.delete('user');
+    this.router.navigate(['/']);
   }
 }

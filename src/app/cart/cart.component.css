@@ -1,11 +1,11 @@
 .container {
   margin-top: 150px;
   position: relative;
-  font-family: Arial, sans-serif;
+  font-family: "Itim", cursive;
 }
 
 h2 {
-  font-size: 27px;
+  font-size: 40px;
   text-align: center;
 }
 
@@ -44,7 +44,7 @@ h2 {
 
 .table {
   width: 100%;
-  margin-bottom: 20px;
+  margin-top: 40px;
 }
 
 th,
@@ -68,6 +68,45 @@ td {
 .scooter-animation {
   animation: moveScooter 3s ease-in-out infinite;
 }
+
+
+.total-price {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.price-box {
+  background-color: #f1c40f; 
+  border-radius: 15px; 
+  padding: 10px 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+ 
+}
+
+.price-box h4 {
+  margin: 0; 
+  color: #ffffff; 
+  font-size: 20px;
+  font-weight: bold;
+  text-align: right;
+}
+
+.price-box h4::before {
+  content: "💰 ";
+  font-size: 30px;
+  color: #e74c3c; 
+}
+
+.price-box:hover {
+  background-color: #f39c12; 
+  cursor: pointer; 
+}
+
+
+
 
 @keyframes moveScooter {
   0% {
@@ -133,4 +172,22 @@ table th {
 
 table td {
   font-size: 14px;
+}
+
+@media (max-width: 576px) {
+  .price-box {
+    background-color: #f1c40f; 
+    border-radius: 15px; 
+    padding: 4px 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+   
+  }
+  
+  .price-box h4 {
+    margin: 0; 
+    color: #ffffff; 
+    font-size: 20px;
+    font-weight: bold;
+    text-align: right;
+  }
 }

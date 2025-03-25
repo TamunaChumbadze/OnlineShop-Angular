@@ -2,13 +2,14 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ApiService } from '../api.service';
 import { CookieService } from 'ngx-cookie-service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterModule],
   templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.css']
+  styleUrls: ['./signin.component.css'],
+  
 })
 export class SigninComponent {
 
@@ -26,12 +27,17 @@ export class SigninComponent {
     this.api.signIn(this.formInfo.value).subscribe({
       next: (data: any) => {
         this.cookies.set('user', data.access_token);
-        this.router.navigate(['/']); 
-        this.close.emit();  
+        
+        alert("თქვენ წარმატებით გაიარეთ ავტორიზაცია!");
+  
+      
+        if (confirm("Profile or Shoping? Press OK for Profile, Cancel for See Shop")) {
+          this.router.navigate(['/profile']);
+        } else {
+          this.router.navigate(['/shop-all-products']); 
+        }
       },
-      error: (err: any) => {
-        console.log(err);  
-      }
+      error: (err: any) => console.log(err),
     });
   }
 

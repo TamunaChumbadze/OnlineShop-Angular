@@ -3,11 +3,12 @@ import { ApiService } from '../api.service';
 import { Router, RouterModule } from '@angular/router';
 import { Products } from '../products';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  imports: [RouterModule],
+  imports: [ RouterModule],
 })
 export class HomeComponent implements OnInit {
   public ratedProducts: Products[] = [];
@@ -39,7 +40,10 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  goToDetails(product: any) {
-    this.router.navigate(['/product-details', product._id]);
+ 
+  goToDetails(product: Products) {
+    this.router.navigate(['/product-details', product._id]);  
   }
+  
+  
 }

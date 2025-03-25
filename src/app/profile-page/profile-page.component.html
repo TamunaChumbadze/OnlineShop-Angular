@@ -1,5 +1,23 @@
-
-
-
-<button (click)="signOut()">Sign Out</button>
-
+<div class="profile-container">
+    <h2>მოგესალმებით, {{ userData?.name || 'მომხმარებელო' }}!</h2>
+  
+   
+    <div class="avatar-container">
+      <img [src]="userData?.avatar || defaultAvatar" alt="Profile Avatar">
+    </div>
+  
+    <div class="profile-info">
+      <p><strong>ელ. ფოსტა:</strong> {{ userData?.email }}</p>
+      <p><strong>შეკვეთების რაოდენობა:</strong> {{ userData?.orders?.length || 0 }}</p>
+    </div>
+  
+    <div class="profile-actions">
+      <button class="btn shop" [routerLink]="'/shop-all-products'">
+        <i class="fas fa-shopping-cart"></i> საყიდლების გვერდი
+      </button>
+        <button (click)="signOut()" class="btn logout">
+          <i class="fas fa-sign-out-alt"></i> გამოსვლა
+        </button>
+      </div>
+  </div>
+  

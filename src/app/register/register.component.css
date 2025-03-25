@@ -51,11 +51,11 @@ select option {
   display: inline-block;
 }
 
-/* სქესის არჩევის შემდეგ ფონდის ფერის ცვლილება */
+
 .custom-dropdown button {
-  background-color: white;  /* ვაით ფონდი თავდაპირველად */
-  color: #4f4caa; /* ტექსტი იასამნისფერი */
-  border: 1px solid #4f4caa; /* იასამნისფერი საზღვარი */
+  background-color: white;  
+  color: #4f4caa;
+  border: 1px solid #4f4caa;
   padding: 8px 15px;
   font-size: 16px;
   cursor: pointer;
@@ -66,22 +66,22 @@ select option {
   width: 100%;
 }
 
-/* როცა სქესი უკვე აირჩიეს, ფონდი შეიცვლება იასამნისფერად */
+
 .custom-dropdown button.selected {
-  background-color: #4f4caa; /* იასამნისფერი ფონდი */
-  color: white; /* თეთრი ტექსტი */
+  background-color: #4f4caa; 
+  color: white; 
 }
 
-/* როცა dropdown ღილაკი focus-ზეა */
+
 .custom-dropdown button:focus {
-  background-color: #2e5b8e; /* იასამნისფერი ფონდი */
-  color: white; /* თეთრი ტექსტი */
-  border-color: #2e5b8e; /* იასამნისფერი საზღვარი */
+  background-color: #2e5b8e; 
+  color: white;
+  border-color: #2e5b8e; 
 }
 
-/* dropdown-ის ფუნქციონალური სტილი */
+
 .custom-dropdown button:hover {
-  background-color: #4f4caa; /* იასამნისფერი ფონდი როცა აირჩიე */
+  background-color: #4f4caa; 
 }
 
 .dropdown-content {
@@ -189,6 +189,7 @@ label {
 @media (max-width: 768px) {
   .form-container {
     flex-direction: column;
+    
   }
 
   .form-left,
@@ -200,5 +201,63 @@ label {
   .form-avatar-gender {
     flex-direction: column;
     gap: 15px;
+  }
+}
+@media (max-width: 576px) {
+  form {
+    width: 100%; 
+    padding: 15px; 
+    margin: 100px auto; 
+   
+    box-shadow: none; 
+  }
+
+  .form-container {
+    gap: 15px;
+  }
+
+  .form-left,
+  .form-right {
+    width: 100%; 
+    gap: 10px; 
+  }
+
+  .field {
+    font-size: 14px; 
+  }
+
+  input,
+  select {
+    padding: 10px; 
+    font-size: 14px; 
+  }
+
+  button {
+    padding: 12px 20px; 
+    font-size: 18px; 
+  }
+
+  label {
+    font-size: 16px; 
+  }
+
+  .custom-dropdown button {
+    font-size: 14px; 
+  }
+
+  .custom-dropdown button.selected {
+    font-size: 14px; 
+  }
+
+  .dropdown-content .dropdown-item {
+    font-size: 14px; 
+  }
+
+  .form-avatar-gender {
+    flex-direction: column; 
+  }
+
+  .field label {
+    font-size: 16px; 
   }
 }

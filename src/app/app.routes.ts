@@ -10,6 +10,7 @@ import { ShopAllProductsComponent } from './shop-all-products/shop-all-products.
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { CartComponent } from './cart/cart.component';
 
+
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: SigninComponent },
@@ -22,7 +23,11 @@ export const routes: Routes = [
   { path: 'contacts', component: ContactsComponent },
   {path: 'register', component: RegisterComponent},
   { path: 'shop-all-products', component: ShopAllProductsComponent},
-  {path: 'productDetails/:id', component: ProductDetailsComponent},
-  {path: 'cart', component: CartComponent}
+  { path: 'product-details/:_id', component: ProductDetailsComponent },
+  {path: 'cart', component: CartComponent},
+  {path: "profile", component: ProfilePageComponent
+  },
+  {path: 'signin', component: SigninComponent}
+
  
 ];

@@ -15,7 +15,8 @@ export class CartComponent implements OnInit {
   constructor(private cartService: CartService) {}
 
   ngOnInit() {
-    this.cartService.cart$.subscribe(cartItems => {
+    
+    this.cartService.cart$.subscribe((cartItems: { products: Products[] }) => {
       this.cartItems = cartItems.products;
     });
 
@@ -28,14 +29,31 @@ export class CartComponent implements OnInit {
       this.cartService.removeFromCart(productId);
     }
   }
-  
-  updateQuantity(product: Products, quantity: number) {
-    if (quantity >= 1) {
-      
-      this.cartService.updateProductQuantity({ id: product._id, quantity: quantity });
+
+  increaseQuantity(item: Products): void {
+    if (item.quantity < item.stock) {
+      item.quantity++; 
+      console.log(`Increased quantity: ${item.quantity}`); 
+      this.updateQuantity(item);  
+    } else {
+      console.log('Cannot increase quantity, stock limit reached');
     }
   }
   
+  decreaseQuantity(item: Products): void {
+    if (item.quantity > 1) {
+      item.quantity--;  
+      console.log(`Decreased quantity: ${item.quantity}`);  
+      this.updateQuantity(item);  
+    } else {
+      console.log('Cannot decrease quantity below 1');
+    }
+  }
+  
+  updateQuantity(item: Products): void {
+    console.log(`Updating quantity on server: ${item.quantity}`);
+    this.cartService.updateProductQuantity({ id: item._id, quantity: item.quantity });
+  }
 
   clearCart() {
     if (confirm('Are you sure you want to clear the cart?')) {
@@ -50,7 +68,11 @@ export class CartComponent implements OnInit {
     }
     this.cartService.checkout();
   }
-
+  totalPrice(): number {
+    return this.cartItems.reduce((total, item) => {
+      return total + (item.pricePerQuantity * item.quantity);
+    }, 0);
+  }
   trackByIndex(index: number, item: Products) {
     return item._id || index;
   }

@@ -1,0 +1,80 @@
+.profile-container {
+    max-width: 400px;
+    margin: 50px auto;
+    margin-top: 100px;
+    padding: 20px;
+    text-align: center;
+    background: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .avatar-container {
+    margin: 10px 0;
+  }
+  
+  .avatar-container img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #007bff;
+  }
+  
+  .profile-info p {
+    font-size: 16px;
+    margin: 10px 0;
+  }
+  
+  .profile-actions {
+    margin-top: 20px;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+  }
+  
+  .btn:hover {
+    opacity: 0.8;
+  }
+  
+  .logout {
+    background: #dc3545;
+    color: white;
+  }
+  
+  .logout:hover {
+    background: #c82333;
+  }
+  .btn.shop {
+    background: linear-gradient(135deg, #ff7eb3, #ff758c);
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(255, 117, 140, 0.3);
+  }
+  
+  .btn.shop:hover {
+    background: linear-gradient(135deg, #ff6584, #ff5069);
+    box-shadow: 0 6px 14px rgba(255, 117, 140, 0.5);
+    transform: translateY(-2px);
+  }
+  
+  .btn.shop i {
+    margin-right: 8px;
+    font-size: 18px;
+  }
+  

@@ -3,12 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
+  [x: string]: any;
   private cartSubject = new BehaviorSubject<any>({ products: [], total: { price: { current: 0, beforeDiscount: 0 }, quantity: 0, products: 0 } });
   cart$ = this.cartSubject.asObservable();
+  
 
   constructor(private http: HttpClient, private cookies: CookieService) { }
 
@@ -35,18 +38,19 @@ export class CartService {
     }
   }
   
-
   updateProductQuantity(product: { id: string, quantity: number }) {
+    console.log('Sending update request with:', product);  
     return this.http.patch('https://api.everrest.educata.dev/shop/cart/product', product).subscribe(
-      (response) => { 
-        this.getCartItems(); 
+      (response) => {
+        console.log('Product updated on server:', response);
+        this.getCartItems();  
       },
       (error) => {
         console.error('Error updating product quantity', error);
-        return throwError(error); 
       }
     );
   }
+  
   
 
   removeFromCart(productId: string) {

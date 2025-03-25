@@ -1,1 +1,59 @@
-<p>product-details works!</p>
+<section class="product-details" *ngIf="product; else loading">
+  <div class="product-gallery">
+    <div class="main-image">
+      <img [src]="mainImage || noImages" alt="Main Product Image">
+    </div>
+    <div class="thumbnail-gallery">
+      <img *ngFor="let image of product.images; let i = index"
+           [src]="image"
+           [alt]="'Product Image ' + i"
+           class="thumbnail"
+           (click)="changeMainImage(image, $event)">
+    </div>
+  </div>
+
+  <div class="product-info">
+    <h2>{{ product.title }}</h2>
+    <p class="product-brand">{{ product.brand }}</p>
+    <p class="product-price">
+      <span class="current-price">${{ product.price.current }}</span>
+      <span *ngIf="product.price.discountPercentage && product.price.discountPercentage > 0" class="before-discount">
+        ${{ product.price.beforeDiscount }}
+      </span>
+    </p>
+
+    <div class="product-description">
+      <h3>Description</h3>
+      <p>{{ product.description }}</p>
+    </div>
+
+    <div class="product-rating">
+      <p class="rating"><strong>Rating:</strong>⭐️ {{product.rating}}</p>
+      
+    </div>
+    <div class="product-rating">
+      
+      <b class="card-stock">მარაგშია: {{product.stock}}</b>
+    </div>
+   
+    <div class="quantity-and-cart">
+     
+      <div class="quantity-selector">
+        <button (click)="decreaseQuantity()" [disabled]="quantity <= 1">-</button>
+        <span>{{ quantity }}</span>
+        <button (click)="increaseQuantity()" [disabled]="product.stock && quantity >= product.stock">+</button>
+      </div>
+
+      
+      <div class="button-container">
+        <button class="btn btn-primary" (click)="addToCart(product)" [disabled]="product.stock === 0">
+          Add to Cart
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #loading>
+  <p>Loading product details...</p>
+</ng-template>

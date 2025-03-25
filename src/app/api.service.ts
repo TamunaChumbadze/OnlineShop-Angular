@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AllProducts } from './all-products';
-import { BehaviorSubject, Subject } from 'rxjs';
+import {  Observable} from 'rxjs';
+import { Products } from './products';
 
 @Injectable({
   providedIn: 'root'
@@ -50,9 +51,10 @@ export class ApiService {
     return this.http.get<any>('https://api.everrest.educata.dev/shop/products/rate');
   }
 
-  getProductById(id: string) {
-    return this.http.get(`https://api.everrest.educata.dev/shop/products/id/${id}`);
+  getProductById(id: string): Observable<Products> {  
+    return this.http.get<Products>(`https://api.everrest.educata.dev/shop/products/id/${id}`);
   }
+  
 
   getCategories() {
     return this.http.get<any[]>('https://api.everrest.educata.dev/shop/products/categories');
