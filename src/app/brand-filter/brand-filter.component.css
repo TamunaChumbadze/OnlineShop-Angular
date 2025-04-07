@@ -30,6 +30,7 @@
 
 .brand-list button:hover {
   background-color: #0056b3;
+
   transform: translateY(2px);  
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15); 
 }
@@ -41,10 +42,15 @@
   position: relative;
   text-transform: uppercase;
 }
+.brand-logo:hover{
+color: antiquewhite;
+}
+  
 
 .brand-logo::after {
   content: '';
   position: absolute;
+
   left: 0;
   bottom: -5px;
   width: 100%;

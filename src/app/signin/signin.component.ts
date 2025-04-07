@@ -43,7 +43,7 @@ export class SigninComponent {
 
 
   closeCard() {
-    this.router.navigate(['/']); 
+    this.router.navigate(['/shop-all-products']); 
     this.close.emit();  
   }
 }
