@@ -17,7 +17,7 @@ export class NavbarComponent  {
   loginCardVisible = signal(false);
   cartItemCount = signal(0);
   categories: any[] = [];
-
+  isNavbarCollapsed = true;
 
   constructor(private router: Router, private cartService: CartService, private apiService: ApiService) {
    
@@ -40,7 +40,9 @@ export class NavbarComponent  {
       navbar?.classList.remove('solidNav');
     }
   }
-
+  toggleNavbar() {
+    this.isNavbarCollapsed = !this.isNavbarCollapsed;
+  }
   
   showLoginCard() {
     this.loginCardVisible.set(true);

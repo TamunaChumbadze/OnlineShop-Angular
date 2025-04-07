@@ -4,7 +4,6 @@ import { NavbarComponent } from "./navbar/navbar.component";
 import { LoaderComponent } from "./loader/loader.component";
 
 
-
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, NavbarComponent, LoaderComponent],
